@@ -27,8 +27,8 @@ class OwnershipsController < ApplicationController
     # Wantボタンが押された時には「Want」が設定されています。
     if (params[:type] == "Have")
       current_user.have(@item)
-    elsif (params[:type] == "want")
-      curennt_user.want(@item)
+    elsif (params[:type] == "Want")
+      current_user.want(@item)
     end
 
   end
