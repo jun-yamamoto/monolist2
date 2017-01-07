@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+      @users = @item.users.group('users.id')
   end
 
   private
