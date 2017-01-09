@@ -1,4 +1,39 @@
-<% @ranking.each_with_index do |item, idx| %>
-   <%= idx + 1 %>位：<%= item.title %><br>
-
-<% end %>
+<div class="container">
+  <div class="container-inner inner-default clearfix">
+      <h2 class="text-center"><span class="glyphicon glyphicon-queen" aria-hidden="true"></span> Wantランキングトップ10</h2>
+    <% @ranking.each_with_index do |item, idx| %>
+      <div class="item-box">
+        <div class="image">
+          <div class="img-wrap">
+            <% #TODO 商品画像 %>
+            <%= image_tag( item.large_image, alt: item.title) %>
+          </div>
+        </div>
+        <div class="ranking">
+          <p class="rank text-center">
+            <span class="glyphicon glyphicon-queen" aria-hidden="true"></span>
+            <%= idx + 1 %>位
+          </p>
+        </div>
+        <div class="detail">
+          <p class="title">
+            <% #TODO 商品タイトル %>
+            <%= link_to item.title, "#{item.detail_page_url}" %>
+          </p>
+        </div>
+        <div class="action clearfix">
+          <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Want") ,
+                      :class => "btn-want btn btn-danger btn-sm want",
+                      :item_code => "want-#{item['itemCode']}",
+                      :remote => true,
+                      :method => :post %>
+          <%= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Have") ,
+                      :class => "btn-have btn btn-warning btn-sm have",
+                      :item_code => "have-#{item['itemCode']}",
+                      :remote => true,
+                      :method => :post %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
